@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get upgrade -y
 
 # Install System Packages
-RUN apt-get install ffmpeg pkg-config libcairo2-dev python-apt -y
+RUN apt-get install ffmpeg -y
 
 # Run setup script instead of doing things on Dockerfile
 # COPY builder/setup.sh /setup.sh
@@ -18,10 +18,12 @@ RUN apt-get install ffmpeg pkg-config libcairo2-dev python-apt -y
 
 
 # Install Python dependencies (Worker Template)
-COPY builder/requirements.txt /requirements.txt
-RUN pip install --upgrade pip && \
-    pip install -r /requirements.txt && \
-    rm /requirements.txt
+RUN pip3 install -q git+https://github.com/linto-ai/whisper-timestamped
+RUN pip3 install -q onnxruntime torchaudio runpod
+# COPY builder/requirements.txt /requirements.txt
+# RUN pip install --upgrade pip && \
+#     pip install -r /requirements.txt && \
+#     rm /requirements.txt
 
 # Download Models
 COPY builder/download_models.sh /download_models.sh
