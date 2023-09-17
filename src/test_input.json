@@ -1,7 +1,9 @@
 {
-    "id": "your_model_id",
-    "input": {
-      "audio": "https://obsueraxueeikuqhiczl.supabase.co/storage/v1/object/public/yt-audio-files/public/yt-audio-adbb0e15-e2e2-4b7c-8cc7-be6653bc1d0e.mp3",
-      "language": "zh"
-    }
+  "id": "job_id_goes_here",
+  "input": {
+    "audio": "https://obsueraxueeikuqhiczl.supabase.co/storage/v1/object/public/yt-audio-files/public/yt-audio-adbb0e15-e2e2-4b7c-8cc7-be6653bc1d0e.mp3",
+    "language": "zh",
+    "transcription": "srt",
+    "temperature": 0.4
   }
+}

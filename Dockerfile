@@ -35,4 +35,4 @@ RUN apt-get autoremove -y && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
 
-CMD [ "python", "-u", "/rp_handler.py" ]
+CMD [ "python", "-u", "/handler.py" ]
