@@ -9,24 +9,25 @@ RUN apt-get update && \
     apt-get upgrade -y
 
 # Install System Packages
-RUN apt-get install ffmpeg -y
+RUN apt-get install ffmpeg pkg-config libcairo2-dev -y
 
 # Run setup script instead of doing things on Dockerfile
 # COPY builder/setup.sh /setup.sh
 # RUN /bin/bash /setup.sh && \
 #     rm /setup.sh
 
-# Download Models
-COPY builder/download_models.sh /download_models.sh
-RUN chmod +x /download_models.sh && \
-    /download_models.sh
-RUN rm /download_models.sh
 
 # Install Python dependencies (Worker Template)
 COPY builder/requirements.txt /requirements.txt
 RUN pip install --upgrade pip && \
     pip install -r /requirements.txt && \
     rm /requirements.txt
+
+# Download Models
+COPY builder/download_models.sh /download_models.sh
+RUN chmod +x /download_models.sh && \
+    /download_models.sh
+RUN rm /download_models.sh
 
 ADD src .
 
