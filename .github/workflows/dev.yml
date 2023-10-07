@@ -14,7 +14,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      
+
       - name: Clear Space
         run: |
           docker rmi `docker images -q`
@@ -22,7 +22,6 @@ jobs:
           rm -rf /opt/ghc
           rm -rf "/usr/local/share/boost"
           rm -rf "$AGENT_TOOLSDIRECTORY"
-          rm -rf /etc/mysql
           rm -rf /etc/php
           rm -rf /etc/apt/sources.list.d
           sudo apt -y autoremove --purge
