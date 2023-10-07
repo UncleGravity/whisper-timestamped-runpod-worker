@@ -35,6 +35,8 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
 
+RUN apt-get install ffmpeg -y
+
 # Install Python dependencies (Worker Template)
 # Install Python dependencies (Worker Template)
 RUN pip3 install -q git+https://github.com/linto-ai/whisper-timestamped

@@ -18,18 +18,27 @@ RUN apt-get install ffmpeg -y
 
 
 # Install Python dependencies (Worker Template)
-# RUN pip3 install -q git+https://github.com/linto-ai/whisper-timestamped
-# RUN pip3 install -q onnxruntime torchaudio runpod
-COPY builder/requirements.txt /requirements.txt
-RUN pip install --upgrade pip && \
-    pip install -r /requirements.txt && \
-    rm /requirements.txt
+## Option 1
+RUN pip3 install -q git+https://github.com/linto-ai/whisper-timestamped
+RUN pip3 install -q onnxruntime torchaudio runpod
+
+## Option 2
+# COPY builder/requirements.txt /requirements.txt
+# RUN pip install --upgrade pip && \
+#     pip install -r /requirements.txt && \
+#     rm /requirements.txt
 
 # Download Models
-COPY builder/download_models.sh /download_models.sh
-RUN chmod +x /download_models.sh && \
-    /download_models.sh
-RUN rm /download_models.sh
+## Option 1
+# COPY builder/download_models.sh /download_models.sh
+# RUN chmod +x /download_models.sh && \
+#     /download_models.sh
+# RUN rm /download_models.sh
+
+## Option 2
+COPY builder/fetch_models.py /fetch_models.py
+RUN python /fetch_models.py && \
+    rm /fetch_models.py
 
 ADD src .
 
