@@ -20,7 +20,7 @@ RUN apt-get install ffmpeg -y
 # Install Python dependencies (Worker Template)
 ## Option 1
 RUN pip3 install -q git+https://github.com/linto-ai/whisper-timestamped
-RUN pip3 install -q onnxruntime torchaudio runpod
+RUN pip3 install -q onnxruntime==1.15.1 torchaudio runpod
 
 ## Option 2
 # COPY builder/requirements.txt /requirements.txt
