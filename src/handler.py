@@ -11,7 +11,7 @@ import os
 import json
 
 # AUDIO_FILE = "./input/yt-audio-adbb0e15-e2e2-4b7c-8cc7-be6653bc1d0e.mp3"
-MODEL_DIR = "../weights/"
+MODEL_DIR = "./weights/"
 # LANGUAGE = "zh"
 
 print("========================================")
