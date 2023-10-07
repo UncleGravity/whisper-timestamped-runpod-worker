@@ -14,6 +14,7 @@ import json
 MODEL_DIR = "./weights/"
 # LANGUAGE = "zh"
 
+print("Starting serverless function")
 print("========================================")
 print("Loading model into VRAM...")
 print("========================================")
