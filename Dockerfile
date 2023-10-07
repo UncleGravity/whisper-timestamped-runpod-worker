@@ -29,18 +29,17 @@ RUN pip3 install -q onnxruntime==1.15.1 torchaudio runpod
 #     rm /requirements.txt
 
 # Download Models
-## Option 1
-# COPY builder/download_models.sh /download_models.sh
-# RUN chmod +x /download_models.sh && \
-#     /download_models.sh
-# RUN rm /download_models.sh
+COPY builder/download_models.sh /download_models.sh
 
-## Option 2
-COPY builder/fetch_models.py /fetch_models.py
-RUN python /fetch_models.py && \
-    rm /fetch_models.py
+COPY builder/fetch_vad_model.py /fetch_vad_model.py
+RUN python /fetch_vad_model.py && \
+    rm /fetch_vad_model.py
 
-ADD src .
+RUN chmod +x /fetch_asr_models.sh && \
+    /fetch_asr_models.sh
+RUN rm /fetch_asr_models.sh
+
+ADD src/ .
 
 # Cleanup section (Worker Template)
 RUN apt-get autoremove -y && \
