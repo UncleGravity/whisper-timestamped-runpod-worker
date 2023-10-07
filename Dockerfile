@@ -36,10 +36,14 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
     rm get-pip.py
 
 # Install Python dependencies (Worker Template)
-COPY builder/requirements.txt /requirements.txt
-RUN pip install --upgrade pip && \
-    pip install -r /requirements.txt --no-cache-dir && \
-    rm /requirements.txt
+# Install Python dependencies (Worker Template)
+RUN pip3 install -q git+https://github.com/linto-ai/whisper-timestamped
+RUN pip3 install -q onnxruntime==1.15.1 torchaudio runpod
+
+# COPY builder/requirements.txt /requirements.txt
+# RUN pip install --upgrade pip && \
+#     pip install -r /requirements.txt --no-cache-dir && \
+#     rm /requirements.txt
 
 # Copy and run script to fetch models
 COPY builder/fetch_models.py /fetch_models.py
