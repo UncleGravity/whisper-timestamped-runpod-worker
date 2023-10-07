@@ -14,4 +14,4 @@ model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad',
 # model = whisper.load_model("small", device="cuda")
 # model = whisper.load_model("medium", device="cuda")
 # model = whisper.load_model("large-v1", device="cuda")
-model = whisper.load_model("large-v2", device="cuda")
+model = whisper.load_model("large-v2", device="cpu") # because we're just loading it, it won't work in docker if we use cuda
