@@ -29,12 +29,12 @@ RUN pip3 install -q onnxruntime==1.15.1 torchaudio runpod
 #     rm /requirements.txt
 
 # Download Models
-COPY builder/download_models.sh /download_models.sh
 
 COPY builder/fetch_vad_model.py /fetch_vad_model.py
 RUN python /fetch_vad_model.py && \
     rm /fetch_vad_model.py
 
+COPY builder/fetch_asr_models.sh /fetch_asr_models.sh
 RUN chmod +x /fetch_asr_models.sh && \
     /fetch_asr_models.sh
 RUN rm /fetch_asr_models.sh
