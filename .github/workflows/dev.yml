@@ -22,8 +22,6 @@ jobs:
           rm -rf /opt/ghc
           rm -rf "/usr/local/share/boost"
           rm -rf "$AGENT_TOOLSDIRECTORY"
-          rm -rf /etc/php
-          rm -rf /etc/apt/sources.list.d
           sudo apt -y autoremove --purge
           sudo apt -y autoclean
           sudo apt clean
