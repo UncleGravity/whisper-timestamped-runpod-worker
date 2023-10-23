@@ -33,8 +33,6 @@ def handler(job):
 
     transcription=job_input.get('transcription', 'plain_text'),
     translate=job_input.get('translate', False),
-    temperature=job_input.get('temperature', 0)
-    language=job_input.get('language', None)
 
     # download audio file
     audio_file = download_files_from_urls(job['id'], job_input['audio'])[0]
@@ -43,14 +41,19 @@ def handler(job):
     # generate transcription
     result = whisper.transcribe(
     model=model, 
-    audio=audio,
-    language=str(language),
+    audio=whisper.load_audio(audio_file),
+    language=job_input.get('language', None),
     vad=True,
     compute_word_confidence=True,
     detect_disfluencies=True,
     # naive_approach=True,
-    temperature=temperature,
-    # no_speech_threshold=0.6,
+    temperature=job_input.get('temperature', 0),
+    task=job_input.get('task', "transcribe"),
+    beam_size=job_input.get('beam_size', 0),
+    patience=job_input.get('patience', 0),
+    best_of=job_input.get('best_of', 0),
+    initial_prompt=job_input.get('initial_prompt', None),
+    no_speech_threshold=job_input.get('no_speech_threshold', 0.6),
     # verbose=True,
     )
 
@@ -70,7 +73,9 @@ def handler(job):
     # else:
     #     translation = {"text": None}
 
-    print(result)
+    # print(result)
+    with open('result.json', 'w') as f:
+        json.dump(result, f)
 
     return {
         "segments": result["segments"],

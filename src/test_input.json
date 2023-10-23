@@ -4,6 +4,10 @@
     "audio": "https://obsueraxueeikuqhiczl.supabase.co/storage/v1/object/public/yt-audio-files/public/yt-audio-adbb0e15-e2e2-4b7c-8cc7-be6653bc1d0e.mp3",
     "language": "zh",
     "transcription": "srt",
-    "temperature": 0.4
+    "temperature": 0.4,
+    "task": "transcribe",
+    "beam_size": 5,
+    "patience": 2,
+    "initial_prompt": "中文轉錄(繁體字):"
   }
 }
