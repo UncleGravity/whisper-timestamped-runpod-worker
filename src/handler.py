@@ -19,7 +19,7 @@ print("========================================")
 print("Loading model into VRAM...")
 print("========================================")
 # Load models into VRAM here so they can be warm between requests
-model = whisper.load_model("large-v2", device="cuda", download_root=MODEL_DIR)
+model = whisper.load_model("large-v3", device="cuda", download_root=MODEL_DIR)
 print("========================================")
 print("Model loaded successfully!")
 print("========================================")
